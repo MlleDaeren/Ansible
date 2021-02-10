@@ -1,0 +1,28 @@
+---
+
+- name: Deploy new Virtual Machine on ESXi
+  hosts: ansible.techcloud.fr
+
+  tasks:
+  - name: Creating VM
+    vmware_guest:
+      hostname: 192.168.0.88
+      username: root
+      password: Espoir15
+      validate_certs: no
+      folder: /vm/
+      name: Ansible
+      state: poweredoff
+      guest_id: guest
+      esxi_hostname: ansible
+      disk:
+      - size_gb: 30
+        type: thin
+        datastore: datastore
+      hardware:
+        memory_mb: 4096
+        num_cpus: 2
+        scsi: paravirtual
+      networks:
+      - name: VM Network
+        type: static
