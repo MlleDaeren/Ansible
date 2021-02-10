@@ -1,0 +1,13 @@
+- name: Maintenance on Active Directory Server
+  hosts: all
+  vars:
+    msg: Server will restart in ten minutes
+    vars_files:
+      - ansible/groups_vars/windows2.yml
+
+  tasks:
+  - name: pingtse
+    win_ping:
+
+  - name: send message
+    win_shell: msg.exe / srvAnsible1.techcloud.fr * "{{ msg }}"
